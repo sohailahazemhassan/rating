@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    *{
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      }
+    /* General Rules*/
+    @font-face {
+      font-family: 'Overpass' , sans-serif;
+      src: url(https://fonts.google.com/specimen/Overpass);
+      font-weight: 400;
+      }
+    @font-face {
+      font-family: 'Overpass' , sans-serif;
+      src: url(https://fonts.google.com/specimen/Overpass);
+      font-weight: 700;
+      }
+    :root{
+      --Orange: hsl(25, 97%, 53%);
+      --White: hsl(0, 0%, 100%);
+      --Light-Grey: hsl(217, 12%, 63%);
+      --Medium-Grey: hsl(216, 12%, 54%);
+      --Dark-Blue: hsl(213, 19%, 18%);
+      --Very-Dark-Blue: hsl(216, 12%, 8%);
+      }
+    body{
+      height:calc(100vh - 1px) ;
+      background-color:var(--Very-Dark-Blue);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 15px;
+      font-family: 'Overpass' , sans-serif;
+      font-weight: 400;
+    }
+    .big ,.small{
+      display: inline;
+      width: 440px;
+      height: 400px;
+      text-align: left;
+      background-color:var(--Dark-Blue);
+      padding: 2.25rem;
+      border-radius: 1.625rem;
+      margin-bottom: 1.25rem;
+    }
+    .star{
+      background-color: hsl(216deg 13% 25%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .star img{
+      margin-top: 28%;
+      margin-left: 30%;
+      margin-bottom: 10%;
+      margin-right: 10%;
+      width: 40%;
+    }
+    h1{
+      color: var(--White);
+      margin-top: 1.5rem;
+    }
+    p{
+      color: var(--Light-Grey);
+      margin-top:1rem;
+      font-size: 1rem;
+    }
+    #allLis{
+      color: var(--Light-Grey);
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 30px;
+      margin-top: 20px;
+      margin-bottom: 22px;
+    }
+    ul li{
+      background-color: hsl(216deg 13% 25%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin: auto;
+      padding: .5rem;
+      font-size: 25px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .big ul li:hover{
+      background-color: var(--Orange);
+      color: var(--White);
+    }
+    .big ul li:active{
+      background-color: var(--Orange);
+      color: var(--White);
+    }
+    .active {
+      background-color: var(--Medium-Grey);
+      color: white;
+    }
+    button{
+      background-color: var(--White);
+      color: var(--Orange);
+      text-transform:uppercase ;
+      width: 370px;
+      height: 55px;
+      border-radius: 2.25rem;
+      font-size: 2rem;
+      cursor: pointer;
+      letter-spacing: 3px;
+    }
+    button:hover{
+      color: var(--Orange);
+      background-color: var(--White);
+    }
+    button:active {
+      background-color: var(--Orange);
+      color: white;
+    }
+    .small{
+      display: none;
+      /* display: inline; */
+      text-align: center;
+      }
+    .buy{
+      width: 195px;
+      height: 28px;
+      border-radius: 1.625rem;
+      margin:2.25rem auto;
+      background-color: hsl(216deg 13% 25%);
+      align-items: center;
+      text-align: center;
+    }
+    h4{
+      color: var(--Orange);
+      margin:1rem auto;
+      padding: .25rem;
+    }
+    h1{
+      color: var(--White);
+      margin: 1rem auto;
+    }
+    p{
+      color: var(--Light-Grey);
+      font-weight: 400;
+      font-size: 1.1em;
+      margin-bottom: 1.25rem;
+    }
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <div class="big">
+    <div class="star">
+      <img src="./images/icon-star.svg" alt="">
+    </div>
+    <h1>How did we do?</h1>
+    <p>Please let us know how we did with your support request. All feedback is appreciated 
+    to help us improve our offering!</p>
+    <ul id="allLis">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+    <button id="btn">Submit</button>
+  </div>
+  <div class="small">
+    <img src="./images/illustration-thank-you.svg" alt="">
+    <div class="buy">
+      <h4>You selected <span id="varNum"></span> out of 5</h4> 
+    </div>
+    <h1>Thank you!</h1>
+    <p>We appreciate you taking the time to give a rating. If you ever need more support, 
+    don’t hesitate to get in touch!</p>
+  </div>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+
+  <script>
+    let myBtn = document.getElementById("btn");
+    let myBig = document.querySelector('.big')
+    let mySmall = document.querySelector('.small');
+    myBtn.onclick = function(){
+      myBig.style.display = 'none';
+      mySmall.style.display = 'inline';
+    }
+    allLis = document.querySelectorAll ('#allLis li')
+    allLis.forEach( function (li) {
+      li.onclick = function() {
+        allLis.forEach(function(li) {
+          li.classList.remove('active')
+        });
+        this.classList.add('active')
+        varNum.value = document.getElementsByClassName('active')[0].innerHTML
+        varNum.innerHTML = varNum.value
+      }
+    });
+  </script>
+</body>
+</html>
+
